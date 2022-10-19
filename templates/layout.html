@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link href="../static/styles/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Lightbox CSS -->
+    <link href="../static/lightbox2/dist/css/lightbox.min.css" rel="stylesheet" />
+
+    <!-- Animations -->
+    <link href="../static/styles/animations.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="../static/styles/custom.css" rel="stylesheet">
+
+    <!-- Favicon used from https://iconscout.com/icon/camera-1468811 under creative common license -->
+    
+    <title>Photos By {{ name }}</title>
+    
+  </head>
+  <body class="preload">
+    <div class="loader-wrapper">
+      <span class="loader">
+      <span class="loader-inner"></span>
+      </span>
+    </div>
+    <nav>
+      <!-- Widescreen nav -->
+      <ul class="nav nav-tabs justify-content-center widescreen">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/potd">Photo of the Day</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/gallery">Gallery</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li>
+        {% if session.get("admin") %}
+          <li class="nav-item">
+            <a class="nav-link" href="/settings">Settings</a>
+          </li>
+        {% endif %}
+      </ul>
+
+      <!-- Smallscreen nav -->
+      <select class="form-select mb-3 w-100 smallscreen" onChange="window.location.assign(this.value);">
+        <option class="dropdown-item" selected>
+          Go to another page:
+        </option>
+        <option class="dropdown-item" value="/">
+          Home
+        </option>
+        <option class="dropdown-item" value="/potd">
+          Photo of the Day
+        </option>
+        <option class="dropdown-item" value="/gallery">
+          Gallery
+        </option>
+        <option class="dropdown-item" value="/contact">
+          Contact
+        </option>
+      </select>
+    </nav>
+
+    {% block main %}{% endblock %}
+
+    <p class="text-center">
+      {% if session.get("admin") %}
+        <form class="text-center mt-0" action="/logout" method="post">
+          <button id="logout" type="submit">Admin Logout</button>
+        </form>
+      {% else %}
+        <a class="text-decoration-none" href="/login">Admin Login</a>
+      {% endif %}
+    </p>
+    
+    <p class="display-inline text-center">Developed by 
+      <a class="text-decoration-none" href="">Forrest Goryl</a>
+    </p>
+
+    <!-- Jquery scripts -->
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+      $(window).on("load", function(){
+          console.log("got here")
+          $(".loader-wrapper").fadeOut("slow");
+          $("body").removeClass("preload");
+      });
+    </script>
+    <!-- Lightbox Script -->
+    <script src="../static/lightbox2/dist/js/lightbox-plus-jquery.min.js"></script>
+
+  </body>
+</html>

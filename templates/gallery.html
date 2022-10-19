@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+
+
+{% block main %}
+    <table id="table" class="table">
+    {% for name, photo_list in galleries.items() %}
+        <thead>
+            <tr>
+                <th>
+                    <h2 class="lucida_sans">{{ name }}</h2>
+                </th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            <tr>
+                {% for photo in photo_list %}
+                    <td class="d-inline-flex">
+                        <a data-lightbox="{{ photo['id'] }}" data-title="{{ photo['description'] }} || {{ photo['location'] }} || {{ photo['date'] }}" href="{{ photo['src'] }}">
+                            <img class="thumbnail img-thumbnail" src="{{ photo['src'] }}" alt="">
+                        </a>
+
+                        {% if session.get("admin") %}
+                            <div class="d-flex">
+                                <form action="/delete" method="post">
+                                    <button class="btn btn-default p-0 ms-2 settings" name="id" value="{{ photo['id'] }}" type="submit">
+                                        <!-- image used from https://iconscout.com/icon/cross-266 under creative commons license-->
+                                        <img src="../static/images/x.png" alt="Delete photo">
+                                    </button>
+                                </form>
+                                <button class="btn btn-default p-0 ms-2 settings" type="button">
+                                    <!-- image used from https://iconscout.com/icon/update-1695005 under creative common license -->
+                                    <img id="update-image-{{ photo['id'] }}" class="update" src="../static/images/update.png" alt="Update photo">
+                                </button>
+                            </div>
+                            <form class="d-none ms-1" id="update-form-{{ photo['id'] }}" action="/update" method="post">
+                                <input class="form-check-input" id="potd-eligible-{{ photo['id'] }}" name="potd" type="radio" value="1">
+                                <label class="form-check-label text-muted fs-6 ms-1" for="potd-eligible-{{ photo['id'] }}">
+                                    Photo of the Day eligible
+                                </label>
+                                <input class="form-check-input ms-2" id="not-potd-eligible-{{ photo['id'] }}" name="potd" type="radio" value="0">
+                                <label class="d-inline-flex form-check-label text-muted fs-6 ms-1" for="not-potd-eligible-{{ photo['id'] }}">
+                                    not eligible
+                                </label>
+                                <div class="d-flex m-auto smallscreen-column mb-1">
+                                    <input class="form-control" name="location" type="text" autocomplete="off" placeholder="Location">
+                                    <select class="form-select" style="width: 200px;" id="update-gallery-{{ photo['id'] }}" name="gallery">
+                                        <option selected value="">Select gallery</option>
+                                        {% for gallery in gallery_names: %}
+                                            <option>{{ gallery }}</option>
+                                        {% endfor %}
+                                        <option value="create new gallery">Create new gallery</option>
+                                    </select>    
+                                </div>
+                                <div class="mb-1" id="new-gallery-{{ photo['id'] }}"></div>
+                                <div class="input-group mb-1">
+                                    <span class="input-group-text">Description</span>
+                                    <textarea class="form-control" name="desc"></textarea>
+                                </div>
+                                <button class="form-control btn-primary" name="id" type="submit" value="{{ photo['id'] }}">Update</button>
+                            </form>
+                        {% endif %}
+
+                    </td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    {% endfor %}
+    </table>
+{% endblock %}

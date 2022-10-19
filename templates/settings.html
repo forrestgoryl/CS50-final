@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <div class="container">
+        <div class="row mt-3">
+            <p class="text-muted text-decoration-underline">Instructions for changing email address:</p>
+            <p class="text-muted">1.) Enter the new email address, click submit.</p>
+            <p class="text-muted">2.) Go to Contact and submit a contact request (it doesn't matter what data is entered into the contact form).</p>
+            <p class="text-muted">3.) Go to your new email and find the <span class="fw-bold">formsubmit</span> email in your new email, then activate <span class="fw-bold">formsubmit.</span></p>
+            <p class="text-muted">4.) Afterwards, take the string of numbers and letters that formsubmit provides, paste the string in the new email and confirm email fields, and resubmit.</p>
+        </div>
+        <div class="row text-center mb-3" style="height: 50px;">
+            {% if message is defined %}
+                {% if message["message_type"] == "error" %}
+                    <h3 class="text-danger m-auto fadeAway">{{ message["text"] }}</h3>
+                {% elif message["message_type"] == "success" %}
+                    <h3 class="text-success m-auto fadeAway">{{ message["text"] }}</h3>
+                {% endif %}
+            {% endif %}
+        </div>
+        <div class="row my-3">
+            <form class="form-control" action="/update_email" method="post" enctype="multipart/form-data">
+                <div class="input-group m-auto w-1000">
+                    <span class="input-group-text w-25">Change your email</span>
+                    <input class="form-control w-auto" id="new_email" name="new_email" type="text" autocomplete="off" autofocus placeholder="New email address">
+                    <input class="form-control w-auto" id="confirm_email" name="confirm_email" type="text" autocomplete="off" placeholder="Confirm email">
+                    <button class="form-control btn-primary" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="row mb-3">
+            <form class="form-control" action="/update_username" method="post" enctype="multipart/form-data">
+                <div class="input-group m-auto w-1000">
+                    <span class="input-group-text w-25">Change your username</span>
+                    <input class="form-control w-auto" id="new_username" name="new_username" type="text" autocomplete="off" autofocus placeholder="New username">
+                    <input class="form-control w-auto" id="confirm_username" name="confirm_username" type="text" autocomplete="off" placeholder="Confirm username">
+                    <button class="form-control btn-primary" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="row mb-3">
+            <form class="form-control" action="/update_password" method="post" enctype="multipart/form-data">
+                <div class="input-group m-auto w-1000">
+                    <span class="input-group-text w-25">Change your password</span>
+                    <input class="form-control w-auto" id="new_password" name="new_password" type="password" autocomplete="off" autofocus placeholder="New password">
+                    <input class="form-control w-auto" id="confirm_password" name="confirm_password" type="password" autocomplete="off" placeholder="Confirm password">
+                    <button class="form-control btn-primary" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+/* animations and transitions */
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-2000px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+.slideL {
+    animation: 1500ms ease-out 0ms 1 slideInFromLeft;
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(2000px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+.slideR {
+    animation: 1500ms ease-out 0ms 1 slideInFromRight;
+}
+
+@keyframes fadeAway {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+.fadeAway {
+    animation: 1500ms fadeAway;
+    animation-delay: 2000ms;
+    animation-fill-mode: forwards;
+}
