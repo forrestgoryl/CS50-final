@@ -10,7 +10,7 @@ NAME = "YOUR_NAME"
 S3_BUCKET = "YOUR_S3_BUCKET"
 ALLOWED_EXTENSIONS = set(["png", "jpg", "jpeg", "gif", "PNG", "JPG", "JPEG", "GIF"])
 IMAGE_PATH = "static/images/gallery/"
-DATABASE_URL = os.environ["DATABASE_URL"]
+DATABASE_URL = os.environ.get("DATABASE_URL", 5433)
 
 def db_connect():
     with psycopg2.connect(DATABASE_URL, sslmode="require") as db:
