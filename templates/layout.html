@@ -87,12 +87,21 @@
     <!-- Jquery scripts -->
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script>
-      $(window).on("load", function(){
-          console.log("got here")
-          $(".loader-wrapper").fadeOut("slow");
-          $("body").removeClass("preload");
+      window.addEventListener("load", function () {
+        var loaderWrapper = document.querySelector(".loader-wrapper");
+        var body = document.body;
+    
+        if (loaderWrapper && body) {
+          loaderWrapper.style.transition = "opacity 0.5s";
+          loaderWrapper.style.opacity = "0";
+    
+          body.classList.remove("preload");
+
+          loaderWrapper.remove();
+        }
       });
     </script>
+    
     <!-- Lightbox Script -->
     <script src="../static/lightbox2/dist/js/lightbox-plus-jquery.min.js"></script>
 

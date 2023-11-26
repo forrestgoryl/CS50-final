@@ -1,47 +1,73 @@
-{% extends "gallery.html" %}
+{% extends "gallery.html" %} {% block main %}
 
-{% block main %}
-    
-    <div class="row text-center mb-3" style="height: 50px;">
-        {% if message is defined %}
-            {% if message["message_type"] == "error" %}
-                <h3 class="text-danger m-auto fadeAway">{{ message["text"] }}</h3>
-            {% elif message["message_type"] == "success" %}
-                <h3 class="text-success m-auto fadeAway">{{ message["text"] }}</h3>
-            {% endif %}
-        {% endif %}
+<div class="row text-center mb-3" style="height: 50px">
+  {% if message is defined %} {% if message["message_type"] == "error" %}
+  <h3 class="text-danger m-auto fadeAway">{{ message["text"] }}</h3>
+  {% elif message["message_type"] == "success" %}
+  <h3 class="text-success m-auto fadeAway">{{ message["text"] }}</h3>
+  {% endif %} {% endif %}
+</div>
+<form
+  class="form-control"
+  action="/upload"
+  method="post"
+  enctype="multipart/form-data"
+>
+  <div class="container w-600">
+    <p class="form-text text-center mt-3">
+      Select an individual image to upload:
+    </p>
+    <input class="form-control mb-3 mt-3" type="file" id="image" name="image" />
+    <div class="d-flex m-auto w-600">
+      <div class="mb-3">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="potd"
+          name="potd"
+          value="1"
+        />
+        <label class="form-check-label" for="potd"> Photo of the Day </label>
+      </div>
+      <input
+        class="form-control mb-3 mx-2"
+        type="text"
+        id="location"
+        name="location"
+        autocomplete="off"
+        placeholder="Location"
+      />
+      <select
+        class="form-select mb-3"
+        style="width: 200px"
+        id="gallery"
+        name="gallery"
+      >
+        <option selected value="">Select gallery</option>
+        {% for gallery in gallery_names: %}
+        <option>{{ gallery }}</option>
+        {% endfor %}
+        <option value="create new gallery">Create new gallery</option>
+      </select>
     </div>
-    <form class="form-control" action="/upload" method="post" enctype="multipart/form-data">
-        <div class="container w-600">
-            <p class="form-text text-center mt-3">Select an individual image to upload:</p>
-            <input class="form-control mb-3 mt-3" type="file" id="image" name="image">
-            <div class="d-flex m-auto w-600">
-                <div class="mb-3">
-                    <input class="form-check-input" type="checkbox" id="potd" name="potd" value="1">
-                    <label class="form-check-label" for="potd">
-                        Photo of the Day
-                    </label>
-                </div>
-                <input class="form-control mb-3 mx-2" type="text" id="location" name="location" autocomplete="off" placeholder="Location">
-                <select class="form-select mb-3" style="width: 200px;" id="gallery" name="gallery">
-                    <option selected value="">Select gallery</option>
-                    {% for gallery in gallery_names: %}
-                        <option>{{ gallery }}</option>
-                    {% endfor %}
-                    <option value="create new gallery">Create new gallery</option>
-                </select>    
-            </div>
-            <div id="new_gallery" class="m-auto mb-3"></div>
-            <div class="input-group m-auto mb-3" style="max-width: 600px;">
-                <span class="input-group-text">Description</span>
-                <textarea class="form-control m-auto w-auto" id="desc" name="desc"></textarea>
-            </div>
-            <button class="form-control btn-primary mb-3" type="submit">Submit</button>
-        </div>
-    </form>
+    <div id="new_gallery" class="m-auto mb-3"></div>
+    <div class="input-group m-auto mb-3" style="max-width: 600px">
+      <span class="input-group-text">Description</span>
+      <textarea
+        class="form-control m-auto w-auto"
+        id="desc"
+        name="desc"
+      ></textarea>
+    </div>
+    <button class="form-control btn-primary mb-3" type="submit">Submit</button>
+  </div>
+</form>
 
-    <!-- This command adds gallery.html content (based upon extends tag) -->
-    {{ super() }}
-    
-    <script type="text/javascript" src="../../static/scripts/adminGallery.js"></script>
+<!-- This command adds gallery.html content (based upon extends tag) -->
+{{ super() }}
+
+<script
+  type="text/javascript"
+  src="../../static/scripts/adminGallery.js"
+></script>
 {% endblock %}

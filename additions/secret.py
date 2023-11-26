@@ -1,1 +1,1 @@
-secret_key = "GENERATE_A_MORE-SECURE_KEY"
+secret_key = "pick-a-safe-secret-key"

@@ -1,23 +1,49 @@
-{% extends "layout.html" %}
-
-{% block main %}
-    <form class="form-control m-auto w-auto" action="https://formsubmit.co/{{ email }}" method="post">
-        <h1 class="text-center">Let me know if I can work for you!</h1>
-        <h4 class="text-center text-muted">Or that you like a photo</h4>
-        <div class="m-auto mb-3 w-1000">
-            <input class="form-control mb-3 m-auto" type="text" id="email" name="email" required autofocus autocomplete="off" placeholder="Enter an email address">
-            <textarea class="form-control mb-3 m-auto" id="text" name="text" required placeholder="Tell me something"></textarea>
-            <h5 class="text-center text-muted fst-italic m-auto mb-3 w-600">I will never sell your information, spam you, or email you for any other reason than to correspond about your project. Or to chat about photography if that's what you want to do!</h5>
-            <button class="form-control btn-primary m-auto w-600" type="submit">Submit</button>
-        </div>
-    </form>
-    <div class="container">
-        <div class="row slideL">
-            {% for photo in photos %}
-                <a class="col" data-lightbox="contact-{{ photo }}" href="{{ photo }}">
-                    <img class="img-fluid img-thumbnail h-100" src="{{ photo }}">
-                </a>
-            {% endfor %}
-        </div>
-    </div>
+{% extends "layout.html" %} {% block main %}
+<div class="row text-center mb-3" style="height: 50px">
+  {% if message is defined %} {% if message["message_type"] == "error" %}
+  <h3 class="text-danger m-auto fadeAway">{{ message["text"] }}</h3>
+  {% elif message["message_type"] == "success" %}
+  <h3 class="text-success m-auto fadeAway">{{ message["text"] }}</h3>
+  {% endif %} {% endif %}
+</div>
+<form class="form-control m-auto w-auto" action="/email" method="post">
+  <h1 class="text-center">Let me know if I can work for you!</h1>
+  <h4 class="text-center text-muted">Or that you like a photo</h4>
+  <div class="m-auto mb-3 w-1000">
+    <input
+      class="form-control mb-3 m-auto"
+      type="text"
+      id="email"
+      name="email"
+      required
+      autofocus
+      autocomplete="off"
+      placeholder="Enter your email address"
+    />
+    <textarea
+      class="form-control mb-3 m-auto"
+      id="text"
+      name="text"
+      required
+      placeholder="Tell me something"
+    ></textarea>
+    <h5 class="text-center text-muted fst-italic m-auto mb-3 w-600">
+      I will never sell your information, spam you, or email you for any other
+      reason than to correspond about your project. Or to chat about photography
+      if that's what you want to do!
+    </h5>
+    <button class="form-control btn-primary m-auto w-600" type="submit">
+      Submit
+    </button>
+  </div>
+</form>
+<div class="container">
+  <div class="row slideL">
+    {% for photo in photos %}
+    <a class="col" data-lightbox="contact-{{ photo }}" href="{{ photo }}">
+      <img class="img-fluid img-thumbnail h-100" src="{{ photo }}" />
+    </a>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}

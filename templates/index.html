@@ -1,17 +1,20 @@
-{% extends "layout.html" %}
-
-{% block main %}
-    <div class="container">
-        <div class="row mb-3 mh-75 smallscreen-column">
-            {% for photo in photos %}
-                <a class="col" data-lightbox="index-{{ photo }}" href="{{ photo }}">
-                    <img class="img-fluid img-thumbnail h-100" src="{{ photo }}" alt="" loading="eager">
-                </a>
-            {% endfor %}
-        </div>
-    </div>
-    <div class="mb-3">
-        <h1 class="display-1 text-center">My Name is {{ name }}</h1>
-        <h2 class="text-muted text-center">I'm a photographer</h2>
-    </div>
+{% extends "layout.html" %} {% block main %}
+<div class="container">
+  <div class="row mb-3 mh-75 smallscreen-column">
+    {% for photo in photos %}
+    <a class="col" data-lightbox="index-{{ photo }}" href="{{ photo }}">
+      <img
+        class="img-fluid img-thumbnail h-100"
+        src="{{ photo }}"
+        alt=""
+        loading="eager"
+      />
+    </a>
+    {% endfor %}
+  </div>
+</div>
+<div class="mb-3">
+  <h1 class="display-1 text-center">My Name is {{ name }}</h1>
+  <h2 class="text-muted text-center">I'm a photographer</h2>
+</div>
 {% endblock %}

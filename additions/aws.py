@@ -1,2 +1,2 @@
-aws_access_key_id = "YOUR_OWN_KEY"
-aws_secret_access = "YOUR_OWN_SECRET_KEY"
+aws_access_key_id = "your-aws-access-key-id"
+aws_secret_access = "your-aws-secret-access"
