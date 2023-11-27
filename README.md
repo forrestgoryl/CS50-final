@@ -13,9 +13,12 @@ This project is a website application that allows an amateur photographer the ab
 This is a Flask-based application that is reliant on Heroku and Amazon Web Services (AWS) S3 storage. It utilizes Bootstrap for much of the CSS and makes use of Lokesh Dhakar's Lightbox2 javascript library (http://lokeshdhakar.com/projects/lightbox2/).
 
 There are three things that must be done to use the application properly:
-1.) Setup `additions/aws.py` and `additions/secret.py` appropriately. You will need an AWS access key ID and secret access.
-2.) In helpers.py, change NAME to your name and S3_BUCKET to your own bucket that you wish photos to be stored in.
-3.) Finally, upload your code to a Heroku dyno. Make sure to set the dyno up with the requisite support detailed in requirements.txt. You will need to addon a Heroku PostgreSQL database.
+
+1. Setup `additions/aws.py` and `additions/secret.py` appropriately. You will need an AWS access key ID and secret access.
+
+2. In `helpers.py`, change `NAME` to your name and S3_BUCKET to your own bucket that you wish photos to be stored in.
+
+3. Finally, upload your code to a Heroku dyno. Make sure to set the dyno up with the requisite support detailed in requirements.txt. You will need to addon a Heroku PostgreSQL database.
 
 After it is setup, the project should be usable without technical know-how via the website itself.
 
