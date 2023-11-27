@@ -38,53 +38,53 @@ A folder containing bootstrap and it's accompanying files.
 
 #### static
 
-A folder containing CSS styles, Javascript files, `lightbox2`, the `favicon.ico` file, and `images`.
+    A folder containing CSS styles, Javascript files, `lightbox2`, the `favicon.ico` file, and `images`.
 
-`styles` contains relevant CSS files.
-`scripts` contains relevant Javascript files.
-`lightbox2` contains CSS and javascript relevant to the lightbox2 library, which enables the user to click on any image and see a bigger version of the image transition into view.
-`images` contains gallery, which is an empty folder used to house photos downloaded from AWS S3. `images` also contains the `update.png` and `x.png` file, used in `adminGallery.html`.
+    `styles` contains relevant CSS files.
+    `scripts` contains relevant Javascript files.
+    `lightbox2` contains CSS and javascript relevant to the lightbox2 library, which enables the user to click on any image and see a bigger version of the image transition into view.
+    `images` contains gallery, which is an empty folder used to house photos downloaded from AWS S3. `images` also contains the `update.png` and `x.png` file, used in `adminGallery.html`.
 
 #### templates
 
-A folder housing all html files used by the application.
+    A folder housing all html files used by the application.
 
 #### **init**.py
 
-Contains two functions integral to the setup of each new Heroku Dyno.
+    Contains two functions integral to the setup of each new Heroku Dyno.
 
 #### app.py
 
-Contains major functions regarding website routes and POST-related processes.
+    Contains major functions regarding website routes and POST-related processes.
 
 #### helpers.py
 
-Contains minor functions supporting the functions in the other python files.
+    Contains minor functions supporting the functions in the other python files.
 
 #### index_functions.py
 
-Contains functions relating to the functionality of the homepage.
+    Contains functions relating to the functionality of the homepage.
 
 #### potd_functions.py
 
-Contains functions relating to the 'Photo of the Day' webpage.
+    Contains functions relating to the 'Photo of the Day' webpage.
 
 #### gallery_functions.py
 
-Contains functions relating to the 'Gallery' webpage.
+    Contains functions relating to the 'Gallery' webpage.
 
 #### contact_functions.py
 
-Contains functions relating to the 'Contact' webpage.
+    Contains functions relating to the 'Contact' webpage.
 
 #### admin_functions.py
 
-Contains all admin-related functions in the project.
+    Contains all admin-related functions in the project.
 
 #### Procfile
 
-Contains instruction information for Heroku's Dynos.
+    Contains instruction information for Heroku's Dynos.
 
 #### requirements.txt
 
-Contains package names of requisite packages.
+    Contains package names of requisite packages.
